@@ -1,6 +1,8 @@
+import MovieCard from "../components/MovieCard.jsx";
+
 const MainPage = () => {
   return (
-    <div>MainPage</div>
+    <MovieCard />
   );
 };
 
