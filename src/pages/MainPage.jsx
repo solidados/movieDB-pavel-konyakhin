@@ -1,4 +1,4 @@
-import MovieCard from "../components/MovieCard.jsx";
+import MovieCard from "../components/movieCard/MovieCard.jsx";
 
 const MainPage = () => {
   return (
