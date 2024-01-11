@@ -37,11 +37,20 @@ $color-light-grey: rgba(224, 228, 238, 0.6);
   }
 
   &-descr {
+    max-height: 0;
     padding: 10px;
+
     border: 1px solid $color-light-grey;
     border-top: none;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
+
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+
+    &.visible {
+      max-height: 20%;
+    }
 
     & p {
       font-size: 0.8rem;
@@ -52,7 +61,7 @@ $color-light-grey: rgba(224, 228, 238, 0.6);
 
   &-title {
     margin-bottom: 10px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     letter-spacing: 1px;
   }
 }

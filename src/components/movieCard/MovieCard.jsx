@@ -12,6 +12,7 @@ import './movieCard.scss'
 const MovieCard = () => {
   const IMG_URL = 'https://image.tmdb.org/t/p/w200';
   const [movieData, setMovieData] = useState(null);
+  const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
 
   useEffect(() => {
     const fetchMovieData = async () => {
@@ -28,20 +29,31 @@ const MovieCard = () => {
       .catch(err => new Error(err.message));
   }, []);
 
+  const handleMouseEnter = () => {
+    setIsDescriptionVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDescriptionVisible(false);
+  };
+
   if (!movieData) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="card">
+    <div className="card" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <div className="card-poster">
         <MoviePoster moviePath={`${IMG_URL}${movieData.poster_path}`} />
         <MovieVote voteAverage={movieData.vote_average} />
       </div>
-      <MovieDescription
-        title={movieData.title}
-        tagline={movieData.tagline}
-      />
+      {isDescriptionVisible && (
+        <MovieDescription
+          title={movieData.title}
+          tagline={movieData.tagline}
+          isVisible={isDescriptionVisible}
+        />
+      )}
     </div>
   );
 };
