@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react';
 import { fetchedData } from "../../helpers/api.js";
 
+// ui
+import MovieVote from "./ui/MovieVote.jsx";
+import MovieDescription from "./ui/MovieDescription.jsx";
+import MoviePoster from "./ui/MoviePoster.jsx";
+
+// styles
 import './movieCard.scss'
 
 const MovieCard = () => {
@@ -29,13 +35,13 @@ const MovieCard = () => {
   return (
     <div className="card">
       <div className="card-poster">
-        <img src={`${IMG_URL}${movieData.poster_path}`} alt="Poster" />
-        <span className="card-vote">{Number(movieData.vote_average).toFixed(1)}</span>
+        <MoviePoster moviePath={`${IMG_URL}${movieData.poster_path}`} />
+        <MovieVote voteAverage={movieData.vote_average} />
       </div>
-      <div className="card-descr">
-        <h3 className="card-title">{movieData.title}</h3>
-        <p>{movieData.tagline}</p>
-      </div>
+      <MovieDescription
+        title={movieData.title}
+        tagline={movieData.tagline}
+      />
     </div>
   );
 };
