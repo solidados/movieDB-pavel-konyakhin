@@ -1,5 +1,7 @@
 const API_KEY = '25803b30d68738b5daf05b883e47b5d5'
-const API_URL = `https://api.themoviedb.org/3/movie/105?api_key=${API_KEY}`
+// const API_URL = `https://api.themoviedb.org/3/movie/105?api_key=${API_KEY}`
+const API_URL = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
+// const API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`
 
 export const fetchedData = () => fetch(API_URL)
   .then(res => {
