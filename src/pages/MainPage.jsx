@@ -1,8 +1,10 @@
 import MovieCard from "../components/movieCard/MovieCard.jsx";
+import MovieList from "../components/movieList/MovieList.jsx";
 
 const MainPage = () => {
   return (
-    <MovieCard />
+    <MovieList />
+    // <MovieCard />
   );
 };
 
