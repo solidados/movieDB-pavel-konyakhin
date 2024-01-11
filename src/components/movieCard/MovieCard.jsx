@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { fetchedData } from "../../helpers/api.js";
+import { useMovieData } from "./hooks/useMovieData.js";
 
 // ui
 import MovieVote from "./ui/MovieVote.jsx";
@@ -7,35 +6,11 @@ import MovieDescription from "./ui/MovieDescription.jsx";
 import MoviePoster from "./ui/MoviePoster.jsx";
 
 // styles
-import './movieCard.scss'
+import './styles/movieCard.scss'
 
 const MovieCard = () => {
   const IMG_URL = 'https://image.tmdb.org/t/p/w200';
-  const [movieData, setMovieData] = useState(null);
-  const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
-
-  useEffect(() => {
-    const fetchMovieData = async () => {
-      try {
-        const data = await fetchedData();
-        setMovieData(data);
-      }
-      catch (error) {
-        console.error('Error fetching movie data:', error);
-      }
-    };
-
-    fetchMovieData()
-      .catch(err => new Error(err.message));
-  }, []);
-
-  const handleMouseEnter = () => {
-    setIsDescriptionVisible(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsDescriptionVisible(false);
-  };
+  const { movieData, isDescriptionVisible, handleMouseEnter, handleMouseLeave } = useMovieData();
 
   if (!movieData) {
     return <div>Loading...</div>;
