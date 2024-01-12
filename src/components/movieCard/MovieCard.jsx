@@ -23,20 +23,28 @@ const MovieCard = ({ movie }) => {
   );
 };
 
-const Favorite = ({ movie }) => {
-  let favorite = movie.favorite
+const Favorite = ({ movie, onRemoveFavorite }) => {
+  const handleFavoriteToggle = () => {
+    const updatedMovie = { ...movie, favorite: !movie.favorite };
+    localStorage.setItem(`movie_${movie.id}`, JSON.stringify(updatedMovie));
+
+    if (!updatedMovie.favorite) {
+      onRemoveFavorite(movie.id);
+    }
+  };
 
   return (
     <form method="post">
       <button
+        type="button"
         name="favorite"
-        value={favorite ? "false" : "true"}
-        aria-label={favorite ? "Remove from favorites" : "Add to favorites"}
+        onClick={handleFavoriteToggle}
+        aria-label={movie.favorite ? "Remove from favorites" : "Add to favorites"}
       >
-        {favorite ? "★" : "☆"}
+        {movie.favorite ? "★" : "☆"}
       </button>
     </form>
-  )
-}
+  );
+};
 
 export default MovieCard;
