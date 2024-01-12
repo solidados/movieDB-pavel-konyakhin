@@ -1,0 +1,30 @@
+.header {
+  width: 100%;
+
+  &-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1440px;
+    padding: 20px;
+    margin: 0 auto;
+  }
+
+  & img {
+    width: 50px;
+    border: 1px solid whitesmoke;
+    border-radius: 50%;
+  }
+
+  & nav {
+    display: flex;
+    gap: 30px;
+  }
+
+  & a {
+    font-size: 1.5rem;
+    color: whitesmoke;
+  }
+}
+
+

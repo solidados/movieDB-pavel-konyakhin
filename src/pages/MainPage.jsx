@@ -1,10 +1,12 @@
-import MovieCard from "../components/movieCard/MovieCard.jsx";
 import MovieList from "../components/movieList/MovieList.jsx";
+import Header from "../components/header/Header.jsx";
 
 const MainPage = () => {
   return (
-    <MovieList />
-    // <MovieCard />
+    <>
+      <Header />
+      <MovieList />
+    </>
   );
 };
 
