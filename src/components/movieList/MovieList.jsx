@@ -21,16 +21,22 @@ const MovieList = () => {
     fetchMovieData().catch(err => new Error(err.message))
   }, []);
 
+  const handleRemoveFavorite = (movieId) => {
+    const updatedMoviesData = moviesData.map((movie) =>
+      movie.id === movieId ? { ...movie, favorite: false } : movie);
+    setMoviesData(updatedMoviesData);
+    localStorage.removeItem(`movie_${movieId}`);
+  };
+
   return (
     <main className="movie">
       <div className="movie-container">
         <h1>Popular Movies</h1>
         <div className="movie-list">
           {moviesData.map(movie => (
-            <MovieCard key={movie.id} movie={movie} />
+            <MovieCard key={movie.id} movie={movie} onRemoveFavorite={handleRemoveFavorite} />
           ))}
         </div>
-
       </div>
     </main>
   );
