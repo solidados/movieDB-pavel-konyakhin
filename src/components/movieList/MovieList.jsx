@@ -22,14 +22,17 @@ const MovieList = () => {
   }, []);
 
   return (
-    <>
-      <h1>Popular Movies</h1>
-      <div className="movie-list">
-        {moviesData.map(movie => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
+    <main className="movie">
+      <div className="movie-container">
+        <h1>Popular Movies</h1>
+        <div className="movie-list">
+          {moviesData.map(movie => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
+        </div>
+
       </div>
-    </>
+    </main>
   );
 };
 
