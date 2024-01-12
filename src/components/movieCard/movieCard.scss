@@ -66,3 +66,17 @@ $color-light-grey: rgba(224, 228, 238, 0.6);
     letter-spacing: 1px;
   }
 }
+
+button[name="favorite"] {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  color: #d7d5d5;
+  background: none;
+  font-size: 1.5rem;
+
+  &:hover {
+    transform: scale3d(1.2, 1.2, 1.2);
+    transition: transform 0.2s ease-in-out;
+  }
+}
