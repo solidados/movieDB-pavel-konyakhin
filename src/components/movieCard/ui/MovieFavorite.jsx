@@ -1,5 +1,6 @@
 const MovieFavorite = ({ movie, onRemoveFavorite }) => {
-  const handleFavoriteToggle = () => {
+  const handleFavoriteToggle = (e) => {
+    e.stopPropagation();
     const updatedMovie = { ...movie, favorite: !movie.favorite };
     localStorage.setItem(`movie_${movie.id}`, JSON.stringify(updatedMovie));
 
