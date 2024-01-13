@@ -5,27 +5,29 @@ import MovieCard from "../movieCard/MovieCard.jsx";
 import './movieList.scss'
 
 const MovieList = () => {
-  const [moviesData, setMoviesData] = useState([])
+  const [moviesData, setMoviesData] = useState([]);
 
   useEffect(() => {
     const fetchMovieData = async () => {
       try {
-        const data = await fetchedData()
-        setMoviesData(data.results)
+        const data = await fetchedData();
+        setMoviesData(data.results);
       }
       catch (err) {
         console.error('Error fetching movie data:', err);
       }
-    }
+    };
 
-    fetchMovieData().catch(err => new Error(err.message))
+    fetchMovieData().catch((err) => new Error(err.message));
   }, []);
 
   const handleRemoveFavorite = (movieId) => {
-    const updatedMoviesData = moviesData.map((movie) =>
-      movie.id === movieId ? { ...movie, favorite: false } : movie);
-    setMoviesData(updatedMoviesData);
     localStorage.removeItem(`movie_${movieId}`);
+    setMoviesData((prevMoviesData) =>
+      prevMoviesData.map((movie) =>
+        movie.favorite ? { ...movie, favorite: false } : movie
+      )
+    );
   };
 
   return (
@@ -33,8 +35,12 @@ const MovieList = () => {
       <div className="movie-container">
         <h1>Popular Movies</h1>
         <div className="movie-list">
-          {moviesData.map(movie => (
-            <MovieCard key={movie.id} movie={movie} onRemoveFavorite={handleRemoveFavorite} />
+          {moviesData.map((movie) => (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              onRemoveFavorite={handleRemoveFavorite}
+            />
           ))}
         </div>
       </div>

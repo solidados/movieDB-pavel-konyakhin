@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import MovieCard from "../components/movieCard/MovieCard.jsx";
 
 const FavoritePage = () => {
@@ -10,14 +9,16 @@ const FavoritePage = () => {
   );
 
   const handleRemoveFavorite = (movieId) => {
-    const updatedFavorites = favoriteMovies.filter((movie) => movie.id !== movieId);
-    setFavoriteMovies(updatedFavorites);
-    localStorage.removeItem(`movie_${movieId}`);
+    setFavoriteMovies((prevFavorites) => {
+      const updatedFavorites = prevFavorites.filter((movie) => movie.id !== movieId);
+      localStorage.removeItem(`movie_${movieId}`);
+      return updatedFavorites;
+    });
   };
 
   return (
     <div className="movie-container">
-      <h1>FavoritePage</h1>
+      <h1>Favorite Movies</h1>
       <div className="movie-list">
         {favoriteMovies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} onRemoveFavorite={handleRemoveFavorite} />

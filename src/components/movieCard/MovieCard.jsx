@@ -1,11 +1,9 @@
-// ui
 import MovieVote from "./ui/MovieVote.jsx";
 import MoviePoster from "./ui/MoviePoster.jsx";
 
-// styles
 import './movieCard.scss'
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, onRemoveFavorite }) => {
   const IMG_URL = 'https://image.tmdb.org/t/p/w200';
 
   if (!movie) {
@@ -17,7 +15,7 @@ const MovieCard = ({ movie }) => {
       <div className="card-poster">
         <MoviePoster moviePath={`${IMG_URL}${movie.poster_path}`} />
         <MovieVote voteAverage={movie.vote_average} />
-        <Favorite movie={movie} />
+        <Favorite movie={movie} onRemoveFavorite={onRemoveFavorite} />
       </div>
     </div>
   );
@@ -28,7 +26,7 @@ const Favorite = ({ movie, onRemoveFavorite }) => {
     const updatedMovie = { ...movie, favorite: !movie.favorite };
     localStorage.setItem(`movie_${movie.id}`, JSON.stringify(updatedMovie));
 
-    if (!updatedMovie.favorite) {
+    if (!updatedMovie.favorite && onRemoveFavorite) {
       onRemoveFavorite(movie.id);
     }
   };
