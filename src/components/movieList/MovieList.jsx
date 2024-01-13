@@ -3,6 +3,7 @@ import { fetchedData } from "../../helpers/api.js";
 import MovieCard from "../movieCard/MovieCard.jsx";
 
 import './movieList.scss'
+import MovieDetails from "../modal/MovieDetails.jsx";
 
 const MovieList = () => {
   const [moviesData, setMoviesData] = useState([]);
@@ -30,6 +31,10 @@ const MovieList = () => {
     );
   };
 
+  const handleMovieDetails = (movie) => {
+    return <MovieDetails movieId={movie.id} />
+  }
+
   return (
     <main className="movie">
       <div className="movie-container">
@@ -40,6 +45,7 @@ const MovieList = () => {
               key={movie.id}
               movie={movie}
               onRemoveFavorite={handleRemoveFavorite}
+              onClick={handleMovieDetails}
             />
           ))}
         </div>
