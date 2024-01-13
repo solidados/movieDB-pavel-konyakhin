@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import MovieVote from "./ui/MovieVote.jsx";
 import MoviePoster from "./ui/MoviePoster.jsx";
+import MovieFavorite from "./ui/MovieFavorite.jsx";
 import MovieDetails from "../modal/MovieDetails.jsx";
 
 import './movieCard.scss'
@@ -26,7 +27,7 @@ const MovieCard = ({ movie, onRemoveFavorite }) => {
       <div className="card-poster" onClick={openModal}>
         <MoviePoster moviePath={`${IMG_URL}${movie.poster_path}`} />
         <MovieVote voteAverage={movie.vote_average} />
-        <Favorite movie={movie} onRemoveFavorite={onRemoveFavorite} />
+        <MovieFavorite movie={movie} onRemoveFavorite={onRemoveFavorite} />
       </div>
       {isOpen && (
         <>
@@ -34,30 +35,6 @@ const MovieCard = ({ movie, onRemoveFavorite }) => {
         </>
       )}
     </div>
-  );
-};
-
-const Favorite = ({ movie, onRemoveFavorite }) => {
-  const handleFavoriteToggle = () => {
-    const updatedMovie = { ...movie, favorite: !movie.favorite };
-    localStorage.setItem(`movie_${movie.id}`, JSON.stringify(updatedMovie));
-
-    if (!updatedMovie.favorite && onRemoveFavorite) {
-      onRemoveFavorite(movie.id);
-    }
-  };
-
-  return (
-    <form method="post">
-      <button
-        type="button"
-        name="favorite"
-        onClick={handleFavoriteToggle}
-        aria-label={movie.favorite ? "Remove from favorites" : "Add to favorites"}
-      >
-        {movie.favorite ? "★" : "☆"}
-      </button>
-    </form>
   );
 };
 
