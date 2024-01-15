@@ -1,3 +1,5 @@
+import { Link, NavLink } from "react-router-dom";
+
 import logo from '../../assets/logo-movie.png'
 import './header.scss'
 
@@ -5,12 +7,12 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-container">
-        <a href="/">
+        <Link to="/">
           <img src={logo} alt="logo" />
-        </a>
+        </Link>
         <nav>
-          <a href="/">Movies</a>
-          <a href="/favorites">Favorites</a>
+          <NavLink to="/">Movies</NavLink>
+          <NavLink to="/favorites">Favorites</NavLink>
         </nav>
       </div>
     </header>
