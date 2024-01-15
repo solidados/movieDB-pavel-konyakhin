@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { fetchedData } from "../../helpers/api.js";
+
 import MovieCard from "../movieCard/MovieCard.jsx";
+import MovieDetails from "../modal/MovieDetails.jsx";
 
 import './movieList.scss'
-import MovieDetails from "../modal/MovieDetails.jsx";
 
 const MovieList = () => {
   const [moviesData, setMoviesData] = useState([]);
