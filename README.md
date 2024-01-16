@@ -1,8 +1,17 @@
-# React + Vite
+# Tumovie project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#### Application is built using Vite + ReactJS
+Further, you may either click [Tumovie](https://tumovies.netlify.app/) to see study project's deployment on Netlify, or:
 
-Currently, two official plugins are available:
+1. Clone or fork this repository:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> $ git clone <this_repository_address>
+
+2. Install dependencies:
+
+> $ cd <project_folder>   
+> $ npm install
+
+3. After installation process is complete, run script:
+
+> $ npm run preview
