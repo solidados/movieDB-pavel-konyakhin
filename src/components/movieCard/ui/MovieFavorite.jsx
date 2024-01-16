@@ -41,7 +41,6 @@ const MovieFavorite = ({ movie }) => {
         onClick={handleFavoriteToggle}
         aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
       >
-        {/*☆*/}
         {isFavorite ? '★' : '☆'}
       </button>
     </form>
