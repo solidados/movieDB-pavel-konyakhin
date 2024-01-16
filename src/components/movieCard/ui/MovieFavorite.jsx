@@ -1,37 +1,24 @@
 import React, { useState, useEffect } from 'react';
 
 const MovieFavorite = ({ movie }) => {
-  const [favoriteMovieIds, setFavoriteMovieIds] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleFavoriteToggle = (e) => {
     e.stopPropagation();
+    const favoriteMovies = JSON.parse(localStorage.getItem('favoriteMovieIds')) || [];
 
-    let updatedIdsArr = JSON.parse(localStorage.getItem('favoriteMovieIds'));
-    if (!favoriteMovieIds.includes(movie.id)) {
-      updatedIdsArr.push(movie.id)
-      setIsFavorite(true)
-    } else {
-      updatedIdsArr = updatedIdsArr.filter((id) => id !== movie.id)
-      setIsFavorite(false)
-    }
-    localStorage.setItem('favoriteMovieIds', JSON.stringify(updatedIdsArr))
-    setFavoriteMovieIds(JSON.parse(localStorage.getItem('favoriteMovieIds')))
+    const updatedFavoriteMovies = favoriteMovies.includes(movie.id)
+      ? favoriteMovies.filter((id) => id !== movie.id)
+      : [...favoriteMovies, movie.id];
+
+    localStorage.setItem('favoriteMovieIds', JSON.stringify(updatedFavoriteMovies));
+    setIsFavorite(updatedFavoriteMovies.includes(movie.id));
   };
 
   useEffect(() => {
-    const favoriteMovies = localStorage.getItem('favoriteMovieIds')
-    if (!favoriteMovies) {
-      localStorage.setItem('favoriteMovieIds', JSON.stringify([]))
-    }
-    setFavoriteMovieIds(JSON.parse(localStorage.getItem('favoriteMovieIds')))
+    const favoriteMovies = JSON.parse(localStorage.getItem('favoriteMovieIds')) || [];
+    setIsFavorite(favoriteMovies.includes(movie.id));
   }, []);
-
-  useEffect(() => {
-    if (favoriteMovieIds.length && favoriteMovieIds.includes(movie.id)) {
-      setIsFavorite(true)
-    }
-  }, [favoriteMovieIds]);
 
   return (
     <form method="post">
@@ -45,7 +32,6 @@ const MovieFavorite = ({ movie }) => {
       </button>
     </form>
   );
-
 };
 
 export default MovieFavorite;
