@@ -8,6 +8,7 @@ import FavoritePage from "./pages/FavoritePage.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 
 import './index.css'
+import { FavoriteProvider } from "./context/FavoriteContext.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <FavoriteProvider>
+      <RouterProvider router={router} />
+    </FavoriteProvider>
   </React.StrictMode>,
 )

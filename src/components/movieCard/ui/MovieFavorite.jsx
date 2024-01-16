@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { FavoriteContext } from "../../../context/FavoriteContext.jsx";
 
 const MovieFavorite = ({ movie }) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const { updateFavoriteMovies } = useContext(FavoriteContext);
 
   const handleFavoriteToggle = (e) => {
     e.stopPropagation();
@@ -13,6 +15,7 @@ const MovieFavorite = ({ movie }) => {
 
     localStorage.setItem('favoriteMovieIds', JSON.stringify(updatedFavoriteMovies));
     setIsFavorite(updatedFavoriteMovies.includes(movie.id));
+    updateFavoriteMovies();
   };
 
   useEffect(() => {
